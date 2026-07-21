@@ -1,0 +1,300 @@
+/* ==========================================================================
+   Registro de Alunos — style_index.css
+   ========================================================================== */
+
+:root {
+  --cor-fundo: #f4f6f8;
+  --cor-superficie: #ffffff;
+  --cor-primaria: #2f6f6a;
+  --cor-primaria-escura: #234f4b;
+  --cor-primaria-clara: #e4f1ef;
+  --cor-acento: #d97f3d;
+  --cor-texto: #22303a;
+  --cor-texto-suave: #5c6b73;
+  --cor-borda: #dbe2e6;
+  --cor-perigo: #c0453a;
+  --cor-perigo-fundo: #fbe9e7;
+
+  --raio: 10px;
+  --raio-pequeno: 6px;
+  --sombra: 0 1px 3px rgba(24, 39, 45, 0.08), 0 1px 2px rgba(24, 39, 45, 0.06);
+  --sombra-hover: 0 6px 16px rgba(24, 39, 45, 0.12);
+
+  --fonte-base: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--fonte-base);
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+  line-height: 1.5;
+}
+
+/* ---------- Layout geral ---------- */
+
+#geral {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 24px 64px;
+}
+
+#geral > h2 {
+  margin: 0 0 24px;
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--cor-primaria-escura);
+  border-bottom: 3px solid var(--cor-acento);
+  display: inline-block;
+  padding-bottom: 6px;
+}
+
+/* ---------- Pesquisa ---------- */
+
+#pesquisa {
+  display: block;
+  margin-bottom: 28px;
+}
+
+input[type="search"] {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 1rem;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  background-color: var(--cor-superficie);
+  color: var(--cor-texto);
+  box-shadow: var(--sombra);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input[type="search"]::placeholder {
+  color: var(--cor-texto-suave);
+}
+
+input[type="search"]:focus {
+  outline: none;
+  border-color: var(--cor-primaria);
+  box-shadow: 0 0 0 3px rgba(47, 111, 106, 0.18);
+}
+
+/* ---------- Cartões (base) ---------- */
+
+.card {
+  background-color: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+  padding: 24px;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+/* ---------- Formulário de cadastro ---------- */
+
+#cards-add {
+  margin-bottom: 36px;
+  display: flex;
+  justify-content: center
+}
+
+#form-aluno {
+  width: 100%;
+  max-width: 550px;
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 12px 16px;
+  align-items: center;
+}
+
+#form-aluno label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--cor-texto-suave);
+  margin-top: 0;
+  display: block;
+}
+
+#form-aluno input:not(.inputOP),
+#form-aluno select {
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 0;
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: var(--cor-texto);
+  background-color: var(--cor-fundo);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-pequeno);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+#form-aluno input:not(.inputOP):focus,
+#form-aluno select:focus {
+  outline: none;
+  border-color: var(--cor-primaria);
+  box-shadow: 0 0 0 3px rgba(47, 111, 106, 0.18);
+  background-color: var(--cor-superficie);
+}
+
+#form-aluno select {
+  cursor: pointer;
+}
+
+/* Grupo de radio (Sexo) */
+.campo-radio {
+  grid-column: 2;
+  display: flex;
+  gap: 20px;
+}
+
+.opcao-radio {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--cor-texto);
+  cursor: pointer;
+}
+
+.opcao-radio .inputOP {
+  width: auto;
+  margin: 0;
+  cursor: pointer;
+  accent-color: var(--cor-primaria);
+  transform: scale(1.1);
+}
+
+/* Botões do formulário ocupam a largura toda, lado a lado */
+#form-aluno #btn-add,
+#form-aluno button[type="reset"] {
+  grid-column: span 2; 
+  width: 100%;
+  margin-top: 8px;
+}
+
+#form-aluno #btn-add {
+  margin-top: 20px; 
+}
+
+/* ---------- Botões ---------- */
+
+.button {
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 11px 20px;
+  border: none;
+  border-radius: var(--raio-pequeno);
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.05s ease, box-shadow 0.15s ease;
+}
+
+.button:active {
+  transform: translateY(1px);
+}
+
+#btn-add {
+  background-color: var(--cor-primaria);
+  color: #ffffff;
+}
+
+#btn-add:hover {
+  background-color: var(--cor-primaria-escura);
+}
+
+button[type="reset"],
+#btn-edit {
+  background-color: var(--cor-primaria-clara);
+  color: var(--cor-primaria-escura);
+}
+
+button[type="reset"]:hover,
+#btn-edit:hover {
+  background-color: #d3e6e3;
+}
+
+#btn-excl {
+  background-color: var(--cor-perigo-fundo);
+  color: var(--cor-perigo);
+}
+
+#btn-excl:hover {
+  background-color: #f5d5d1;
+}
+
+/* ---------- Lista de alunos cadastrados ---------- */
+
+#cards-lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+#cards-lista .card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-left: 4px solid var(--cor-primaria);
+}
+
+#cards-lista .card:hover {
+  box-shadow: var(--sombra-hover);
+  transform: translateY(-2px);
+}
+
+.card-aluno {
+  margin: 4px 0;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--cor-texto);
+}
+
+/* Nome do(a) aluno(a) em destaque */
+#cards-lista .card h3.card-aluno:first-of-type {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--cor-primaria-escura);
+  margin-bottom: 8px;
+}
+
+/* Média em destaque */
+#cards-lista .card h3#nota-media {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--cor-borda);
+  font-weight: 700;
+  color: var(--cor-acento);
+}
+
+#cards-lista .card .button {
+  margin-top: 12px;
+}
+
+#cards-lista .card .button + .button {
+  margin-left: 8px;
+}
+
+/* ---------- Responsivo ---------- */
+
+@media (max-width: 640px) {
+  #geral {
+    padding: 20px 16px 48px;
+  }
+
+  #form-aluno {
+    grid-template-columns: 1fr;
+  }
+
+  .campo-radio {
+    grid-column: 1;
+  }
+
+  #cards-lista {
+    grid-template-columns: 1fr;
+  }
+}
