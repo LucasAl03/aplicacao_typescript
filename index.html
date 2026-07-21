@@ -5,18 +5,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atividade 03 - TypeScript: Fundamentos e Aplicação Prática</title>
 
-    <script src="app.ts"></script>
+    <script src="app.js"></script>
 </head>
 <body>
     <main id="geral">
-        <header class="cabecalho">
+        <h2>Registro de Alunos</h2>
 
-        </header>
+        <section id="pesquisa">
+            <input type="search" name="pesquisa" id="pesquisa" placeholder="Digite a informação do aluno(a)">
+        </section>
 
-        <section id="cards">
-            <div id="card">
-                <label for="nome">Aluno</label>
+        <section id="cards-add">
+            <div id="card-add" class="card">
+                <label for="aluno">Aluno</label>
+                <input type="text" id="aluno" class="add-aluno" required>
+                <label for="nascimento-add">Data de nascimento: </label>
+                <input type="date" id="data-nascimento-add" class="add-aluno" required>
+                <label for="ano-add">Ano: </label>
+                <select name="ano-add" id="ano-add" required>
+                    <option value="1">
+                        <div id="ano-add" class="add-aluno">1º ano - ensino fundamental I</div>
+                    </option>
+                    <option value="2">
+                        <div id="ano-add" class="add-aluno">2º ano - ensino fundamental I</div>
+                    </option>
+                    <option value="3">
+                        <div id="ano-add" class="add-aluno">3º ano - ensino fundamental I</div>
+                    </option>
+                    <option value="4">
+                        <div id="ano-add" class="add-aluno">4º ano - ensino fundamental I</div>
+                    </option>
+                    <option value="5">
+                        <div id="ano-add" class="add-aluno">5º ano - ensino fundamental I</div>
+                    </option>
+                </select>
+                <label for="turma-add">Turma: </label>
+                <select name="turma-add" id="turma-add">
+                    <option value="T1">
+                        <div id="turma-add" class="add-aluno">1</div>
+                    </option>
+                    <option value="T2">
+                        <div id="turma-add" class="add-aluno">2</div>
+                    </option>
+                </select>
+                <label for="matricula-add" class="add-aluno">Matricula: </label>
+                <input type="number" id="matricula-add" class="add-aluno" minlength="4" maxlength="4" required>
+                <label for=nota01-add" class="add-aluno">Nota 01: </label>
+                <input type="number" id="nota01-add" class="add-aluno" required>
+                <label for=nota02-add" class="add-aluno">Nota 02: </label>
+                <input type="number" id="nota02-add" class="add-aluno" required>
+                <label for=nota03-add" class="add-aluno">Nota 03: </label>
+                <input type="number" id="nota03-add" class="add-aluno" required>
 
+                <button type="submit" id="btn-add" class="button">Adicionar</button>
+                <button type="reset" class="button">Limpar</button>
+            </div>
+        </section>
+
+        <section id="cards-lista">
+            <div id="card-aluno" class="card">
+                <h3 id="aluno" class="card-aluno">Nome do(a) Aluno(a): Carlos</h3>
+                <h3 id="data-nascimento" class="card-aluno">Data de nascimento: 20/04/2013</h3>
+                <h3 id="idade" class="card-aluno">Idade: 13 anos</h3>
+                <h3 id="turma" class="card-aluno">Ano: 2</h3>
+                <h3 id="turma" class="card-aluno">Turma: 2</h3>
+                <h3 id="matricula" class="card-aluno">Turma: </h3>
+                <h3 id="nota01" class="card-aluno">Nota 01: </h3>
+                <h3 id="nota02" class="card-aluno">Nota 02: </h3>
+                <h3 id="nota03" class="card-aluno">Nota 03: </h3>
+                <h3 id="nota-media" class="card-aluno">Média: </h3>
+
+                <button id="btn-edit" class="button">Editar</button>
+                <button id="btn-excl" class="button">Excluir</button>
             </div>
         </section>
     </main>
