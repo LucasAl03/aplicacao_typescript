@@ -1,8 +1,19 @@
 
-//const alunos: any = []
+const alunos: Aluno[] = []
 
-const formAluno: any = document.querySelector('#form-aluno')
-const 
+interface Aluno {
+    nome: FormDataEntryValue | null
+    datanascimento: FormDataEntryValue | null
+    sexo: FormDataEntryValue | null
+    ano: FormDataEntryValue | null
+    turma: FormDataEntryValue | null
+    matricula: FormDataEntryValue | null
+    nota01: number
+    nota02: number
+    nota03: number
+}
+
+const formAluno = document.querySelector<HTMLFormElement>('#form-aluno')
 
 formAluno?.addEventListener('submit', (evt: Event)=>{
     evt.preventDefault()
@@ -16,15 +27,14 @@ formAluno?.addEventListener('submit', (evt: Event)=>{
         ano: dadosForm.get('ano-add'),
         turma: dadosForm.get('turma-add'),
         matricula: dadosForm.get('matricula-add'),
-        nota01: dadosForm.get('nota01-add'),
-        nota02: dadosForm.get('nota02-add'),
-        nota03: dadosForm.get('nota03-add'),
+        nota01: Number (dadosForm.get('nota01-add')),
+        nota02: Number(dadosForm.get('nota02-add')),
+        nota03: Number(dadosForm.get('nota03-add')),
     }
+    
+    alunos.push(aluno)
 
     console.log(aluno)
 
-    
-
-    formAluno.reset() 
+    formAluno?.reset() 
 })
-
