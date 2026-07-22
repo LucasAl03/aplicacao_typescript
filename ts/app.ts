@@ -30,6 +30,7 @@ formAluno?.addEventListener('submit', (evt: Event)=>{
         nota01: Number (dadosForm.get('nota01-add')),
         nota02: Number(dadosForm.get('nota02-add')),
         nota03: Number(dadosForm.get('nota03-add')),
+        media: (Number(dadosForm.get('nota01-add')) + Number(dadosForm.get('nota02-add')) + Number(dadosForm.get('nota03-add'))) / 3
     }
     
     alunos.push(aluno)
@@ -38,3 +39,4 @@ formAluno?.addEventListener('submit', (evt: Event)=>{
 
     formAluno?.reset() 
 })
+
