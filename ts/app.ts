@@ -51,7 +51,7 @@ function CalcularIdade(nasciData: FormDataEntryValue | null): number {
     let nascimentoDataAno = nascimentoData.getFullYear();
 
     // Coleta dia, mes e ano da data atual
-    ler dataHoje = new Date();
+    let dataHoje = new Date();
     let diaHoje = dataHoje.getDate();
     let mesHoje = dataHoje.getMonth();
     let anoHoje = dataHoje.getFullYear();
@@ -114,7 +114,6 @@ function criarCardHTML(aluno: Aluno, index: number): string {
     const anoTexto = mapaAno[String(aluno.ano)] ?? String(aluno.ano ?? '');
 
     return `
-        <section id="cards-lista">
             <div class="card" data-index="${index}">
                 <h3 id="aluno" class="card-aluno"">Nome do(a) Aluno(a): ${aluno.nome}</h3>
                 <h3 id="data-nascimento" class="card-aluno"">Data de nascimento: ${formatarData(aluno.datanascimento)}</h3>
@@ -132,7 +131,6 @@ function criarCardHTML(aluno: Aluno, index: number): string {
                 <button id="btn-edit" class="button btn-edit" data-index="${index}">Editar</button>
                 <button id="btn-excl" class="button btn-excl" data-index="${index}">Excluir</button>
             </div>
-        </section>
     `;
 }
 

@@ -85,7 +85,6 @@ function criarCardHTML(aluno, index) {
     const sexoTexto = mapaSexo[String(aluno.sexo)] ?? String(aluno.sexo ?? '');
     const anoTexto = mapaAno[String(aluno.ano)] ?? String(aluno.ano ?? '');
     return `
-        <section id="cards-lista">
             <div class="card" data-index="${index}">
                 <h3 id="aluno" class="card-aluno"">Nome do(a) Aluno(a): ${aluno.nome}</h3>
                 <h3 id="data-nascimento" class="card-aluno"">Data de nascimento: ${formatarData(aluno.datanascimento)}</h3>
@@ -103,7 +102,6 @@ function criarCardHTML(aluno, index) {
                 <button id="btn-edit" class="button btn-edit" data-index="${index}">Editar</button>
                 <button id="btn-excl" class="button btn-excl" data-index="${index}">Excluir</button>
             </div>
-        </section>
     `;
 }
 // Mostra os cards de cada aluno no html
