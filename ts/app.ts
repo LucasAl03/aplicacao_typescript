@@ -73,6 +73,22 @@ function salvarAlunos(): void {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(alunos));
 }
 
+function preencherFormulario(aluno: Aluno): void {
+    if (!formAluno) return;
+
+    (formAluno.querySelector('#nome-aluno') as HTMLInputElement).value = String(aluno.nome ?? '');
+    (formAluno.querySelector('#nascimento-add') as HTMLInputElement).value = String(aluno.datanascimento ?? '');
+    (formAluno.querySelector('#ano-add') as HTMLSelectElement).value = String(aluno.ano ?? '');
+    (formAluno.querySelector('#turma-add') as HTMLSelectElement).value = String(aluno.turma ?? '');
+    (formAluno.querySelector('#matricula-add') as HTMLInputElement).value = String(aluno.matricula ?? '');
+    (formAluno.querySelector('#nota01-add') as HTMLInputElement).value = String(aluno.nota01 ?? '');
+    (formAluno.querySelector('#nota02-add') as HTMLInputElement).value = String(aluno.nota02 ?? '');
+    (formAluno.querySelector('#nota03-add') as HTMLInputElement).value = String(aluno.nota03 ?? '');
+
+    const radioSexo = formAluno.querySelector<HTMLInputElement>(`input[name="sexo-add"][value="${aluno.sexo}"]`);
+    if (radioSexo) radioSexo.checked = true;
+}
+
 function criarCardHTML(aluno: Aluno, index: number): string {
     const sexoTexto = mapaSexo[String(aluno.sexo)] ?? String(aluno.sexo ?? '');
     const anoTexto = mapaAno[String(aluno.ano)] ?? String(aluno.ano ?? '');
@@ -120,7 +136,7 @@ formAluno?.addEventListener('submit', (evt: Event) => {
 
     const dadosForm = new FormData(formAluno);
     const nasciData = dadosForm.get('nascimento-add');
-    const media = (Number(dadosForm.get('nota01-add')) + Number(dadosForm.get('nota02-add')) + Number(dadosForm.get('nota03-add'))) / 3
+    const media = (Number(dadosForm.get('nota01-add')) + Number(dadosForm.get('nota02-add')) + Number(dadosForm.get('nota03-add'))) / 3;
 
     const aluno: Aluno = {
         nome: dadosForm.get('nome-aluno'),
@@ -158,9 +174,14 @@ cardsLista?.addEventListener('click', (evt: Event) => {
     }
 
     if (target.classList.contains('btn-edit')) {
-        console.log('Editar aluno', alunos[index]);
-    }
+        const [alunoRemovido] = alunos.splice(index, 1);
 
+        if (!alunoRemovido) return;
+
+        salvarAlunos();
+        listAluno();
+        preencherFormulario(alunoRemovido);
+    }
 });
 
 listAluno();
