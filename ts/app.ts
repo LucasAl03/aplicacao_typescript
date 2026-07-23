@@ -83,8 +83,8 @@ function criarCardHTML(aluno: Aluno, index: number): string {
                 <h3 id="nota03" class="card-aluno"">Nota 03: ${aluno.nota03.toFixed(2)}</h3>
                 <h3 id="nota-media" class="card-aluno"">Média: ${aluno.media.toFixed(2)}</h3>
 
-                <button class="button btn-edit" data-index="${index}">Editar</button>
-                <button class="button btn-excl" data-index="${index}">Excluir</button>
+                <button id="btn-edit" class="button btn-edit" data-index="${index}">Editar</button>
+                <button id="btn-excl" class="button btn-excl" data-index="${index}">Excluir</button>
             </div>
         </section>
     `;
