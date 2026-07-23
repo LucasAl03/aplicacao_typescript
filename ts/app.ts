@@ -12,6 +12,7 @@ interface Aluno {
     nota02: number
     nota03: number
     media: number
+    situacao: string
 }
 
 const alunos: Aluno[] = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
@@ -25,6 +26,14 @@ const mapaAno: Record<string, string> = {
     '4': '4º ano - ensino fundamental I',
     '5': '5º ano - ensino fundamental I'
 };
+
+function mediaAprova(media: number): string {
+    if (media >= 6) {
+        return 'Aprovado';
+    } else {
+        return 'Reprovado';
+    }
+}
 
 function CalcularIdade(nasciData: FormDataEntryValue | null): number {
     var nascimentoData = new Date(nasciData as string);
@@ -82,6 +91,7 @@ function criarCardHTML(aluno: Aluno, index: number): string {
                 <h3 id="nota02" class="card-aluno"">Nota 02: ${aluno.nota02.toFixed(2)}</h3>
                 <h3 id="nota03" class="card-aluno"">Nota 03: ${aluno.nota03.toFixed(2)}</h3>
                 <h3 id="nota-media" class="card-aluno"">Média: ${aluno.media.toFixed(2)}</h3>
+                <h3 id="situacao" class="card-aluno situacao-${aluno.situacao.toLowerCase()}">Situação: ${aluno.situacao}</h3>
 
                 <button id="btn-edit" class="button btn-edit" data-index="${index}">Editar</button>
                 <button id="btn-excl" class="button btn-excl" data-index="${index}">Excluir</button>
@@ -110,6 +120,7 @@ formAluno?.addEventListener('submit', (evt: Event) => {
 
     const dadosForm = new FormData(formAluno);
     const nasciData = dadosForm.get('nascimento-add');
+    const media = (Number(dadosForm.get('nota01-add')) + Number(dadosForm.get('nota02-add')) + Number(dadosForm.get('nota03-add'))) / 3
 
     const aluno: Aluno = {
         nome: dadosForm.get('nome-aluno'),
@@ -122,7 +133,8 @@ formAluno?.addEventListener('submit', (evt: Event) => {
         nota01: Number(dadosForm.get('nota01-add')),
         nota02: Number(dadosForm.get('nota02-add')),
         nota03: Number(dadosForm.get('nota03-add')),
-        media: (Number(dadosForm.get('nota01-add')) + Number(dadosForm.get('nota02-add')) + Number(dadosForm.get('nota03-add'))) / 3
+        media: (Number(dadosForm.get('nota01-add')) + Number(dadosForm.get('nota02-add')) + Number(dadosForm.get('nota03-add'))) / 3,
+        situacao: mediaAprova(media)
     };
 
     const matriculaDuplicada = alunos.some(item => item.matricula === dadosForm.get('matricula-add'));
