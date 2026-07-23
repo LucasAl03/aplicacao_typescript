@@ -90,7 +90,7 @@ function salvarAlunos(): void {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(alunos));
 }
 
-// 
+// Preenche os campos do formulario com os dados do aluno no card ao clicar o botão editar
 function preencherFormulario(aluno: Aluno): void {
     if (!formAluno) return;
 
@@ -107,7 +107,9 @@ function preencherFormulario(aluno: Aluno): void {
     if (radioSexo) radioSexo.checked = true;
 }
 
+// Cria um card para o aluno na array
 function criarCardHTML(aluno: Aluno, index: number): string {
+    // Converte os valores sexo e ano em texto usando os mapas ja declarados
     const sexoTexto = mapaSexo[String(aluno.sexo)] ?? String(aluno.sexo ?? '');
     const anoTexto = mapaAno[String(aluno.ano)] ?? String(aluno.ano ?? '');
 
@@ -134,12 +136,15 @@ function criarCardHTML(aluno: Aluno, index: number): string {
     `;
 }
 
+// Mostra os cards de cada aluno no html
 function listAluno(): void {
     if (!cardsLista) return;
 
+    // Gera o card de cada aluno e adiciona ao container
     cardsLista.innerHTML = alunos.map((aluno, index) => criarCardHTML(aluno, index)).join('');
 }
 
+// Adiciona o novo aluno ao array, salva e atualiza a pagina
 const addAluno = (objAluno: Aluno): void => {
 
     alunos.push(objAluno);
@@ -149,13 +154,19 @@ const addAluno = (objAluno: Aluno): void => {
     listAluno();
 }
 
+// Evento dispara ao enviar o formulario
 formAluno?.addEventListener('submit', (evt: Event) => {
+    // Evita o evento padrão
     evt.preventDefault();
 
+    // Captura os dados enviados ao formulario
     const dadosForm = new FormData(formAluno);
     const nasciData = dadosForm.get('nascimento-add');
+
+    // Calculo para media das notas
     const media = (Number(dadosForm.get('nota01-add')) + Number(dadosForm.get('nota02-add')) + Number(dadosForm.get('nota03-add'))) / 3;
 
+    // Montagem do objeto aluno com a tipagem de cada dado do formulario
     const aluno: Aluno = {
         nome: dadosForm.get('nome-aluno'),
         datanascimento: nasciData,
@@ -171,26 +182,34 @@ formAluno?.addEventListener('submit', (evt: Event) => {
         situacao: mediaAprova(media)
     };
 
+    // Verifica se a matricula do aluno informada no formulario ja existe na array
     const matriculaDuplicada = alunos.some(item => item.matricula === dadosForm.get('matricula-add'));
 
     if (matriculaDuplicada) {
+        // Impede o cadastro se a matricula ja existir
         alert('Já existe um aluno cadastrado com essa matrícula');
     } else {
+        // Adiciona o aluno novo ou se editado, e limpa o formulario
         addAluno(aluno);
         formAluno?.reset();
     }
 });
 
+// Captura o evento de clique de botões na lista de cards
 cardsLista?.addEventListener('click', (evt: Event) => {
-    const target = evt.target as HTMLElement;
+    const target = evt.target as HTMLElement;4
+
+    // Captura o indice do aluno que se associa ao botão clicado
     const index = Number(target.dataset.index);
 
+    // Se o botão excluir for clicado, o card do aluno é removido
     if (target.classList.contains('btn-excl')) {
         alunos.splice(index, 1);
         salvarAlunos();
         listAluno();
     }
 
+    // Botão editar clicado, remove o card do aluno, e joga os dados do aluno no formulario para edição
     if (target.classList.contains('btn-edit')) {
         const [alunoRemovido] = alunos.splice(index, 1);
 
@@ -202,4 +221,5 @@ cardsLista?.addEventListener('click', (evt: Event) => {
     }
 });
 
+// Renderiza os cards de alunos salvos quando a pagina carrega
 listAluno();
