@@ -1,5 +1,7 @@
+//Variavel declarada para salvar e recuperar a lista de alunos na localStorage
 const STORAGE_KEY = 'alunos';
 
+//Aluno cadastrado com tipagem
 interface Aluno {
     nome: FormDataEntryValue | null
     datanascimento: FormDataEntryValue | null
@@ -15,10 +17,13 @@ interface Aluno {
     situacao: string
 }
 
+// Carrega os alunos salvos na localStorage
 const alunos: Aluno[] = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
 
+// Traduz o value do input radio para sexo
 const mapaSexo: Record<string, string> = { M: 'Masculino', F: 'Feminino' };
 
+// Traduz o value do select para ano do ensino fundamental
 const mapaAno: Record<string, string> = {
     '1': '1º ano - ensino fundamental I',
     '2': '2º ano - ensino fundamental I',
@@ -27,6 +32,7 @@ const mapaAno: Record<string, string> = {
     '5': '5º ano - ensino fundamental I'
 };
 
+// Função para verificar a situação do aluno se aprovado ou reprovado
 function mediaAprova(media: number): string {
     if (media >= 6) {
         return 'Aprovado';
@@ -35,13 +41,16 @@ function mediaAprova(media: number): string {
     }
 }
 
+// Calcula a idade atual do aluno
 function CalcularIdade(nasciData: FormDataEntryValue | null): number {
     var nascimentoData = new Date(nasciData as string);
 
+    // Coleta dia, mes e ano da ta de nascimento informado no form
     var nascimentoDataDia = nascimentoData.getDate();
     var nascimentoDataMes = nascimentoData.getMonth();
     var nascimentoDataAno = nascimentoData.getFullYear();
 
+    // Coleta dia, mes e ano da data atual
     var dataHoje = new Date();
     var diaHoje = dataHoje.getDate();
     var mesHoje = dataHoje.getMonth();
@@ -49,10 +58,13 @@ function CalcularIdade(nasciData: FormDataEntryValue | null): number {
 
     var idade = 0;
 
+    // Compara mes atual com o de nascimento, para saber se o aniverario desse ano ja aconteceu
     if (mesHoje > nascimentoDataMes) {
         idade = anoHoje - nascimentoDataAno;
+    // Se mes atual igual ao mes nascimento, compara o dia de nascimento e o dia atual, se maior ou igual calcula ano atual menos o de nascimento, se menor calcula ano atual menos o de nascimento menos 1
     } else if (mesHoje === nascimentoDataMes) {
         idade = diaHoje >= nascimentoDataDia ? anoHoje - nascimentoDataAno : anoHoje - nascimentoDataAno - 1;
+    // Calcula ano atual menos o de nascimento menos 1
     } else {
         idade = anoHoje - nascimentoDataAno - 1;
     }
@@ -60,19 +72,25 @@ function CalcularIdade(nasciData: FormDataEntryValue | null): number {
     return idade;
 }
 
+// Formata a data de nascimento para o formato pt-br
 function formatarData(data: FormDataEntryValue | null): string {
     if (!data) return '';
     const d = new Date(data as string);
     return d.toLocaleDateString('pt-BR', { timeZone: 'UTC' });
 }
 
+// Pega o formulario do DOM
 const formAluno = document.querySelector<HTMLFormElement>('#form-aluno');
+
+// Pega a section cards-lista do DOM
 const cardsLista = document.querySelector<HTMLElement>('#cards-lista');
 
+// Salava a array de alunos na localStorage
 function salvarAlunos(): void {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(alunos));
 }
 
+// 
 function preencherFormulario(aluno: Aluno): void {
     if (!formAluno) return;
 
