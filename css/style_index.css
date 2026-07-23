@@ -273,12 +273,26 @@ button[type="reset"]:hover,
   color: var(--cor-acento);
 }
 
+
+/* Situação do aluno */
+.situacao-aprovado {
+  color: var(--cor-primaria);
+  font-weight: 700;
+}
+
+.situacao-reprovado {
+  color: var(--cor-perigo);
+  font-weight: 700;
+}
+
 #cards-lista .card .button {
+  width: 100%;
   margin-top: 12px;
 }
 
 #cards-lista .card .button + .button {
-  margin-left: 8px;
+  margin-left: 0;
+  margin-top: 8px;
 }
 
 /* ---------- Responsivo ---------- */
