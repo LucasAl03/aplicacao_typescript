@@ -23,17 +23,17 @@ function mediaAprova(media) {
 }
 // Calcula a idade atual do aluno
 function CalcularIdade(nasciData) {
-    var nascimentoData = new Date(nasciData);
+    let nascimentoData = new Date(nasciData);
     // Coleta dia, mes e ano da ta de nascimento informado no form
-    var nascimentoDataDia = nascimentoData.getDate();
-    var nascimentoDataMes = nascimentoData.getMonth();
-    var nascimentoDataAno = nascimentoData.getFullYear();
+    let nascimentoDataDia = nascimentoData.getDate();
+    let nascimentoDataMes = nascimentoData.getMonth();
+    let nascimentoDataAno = nascimentoData.getFullYear();
     // Coleta dia, mes e ano da data atual
-    var dataHoje = new Date();
-    var diaHoje = dataHoje.getDate();
-    var mesHoje = dataHoje.getMonth();
-    var anoHoje = dataHoje.getFullYear();
-    var idade = 0;
+    let dataHoje = new Date();
+    let diaHoje = dataHoje.getDate();
+    let mesHoje = dataHoje.getMonth();
+    let anoHoje = dataHoje.getFullYear();
+    let idade = 0;
     // Compara mes atual com o de nascimento, para saber se o aniverario desse ano ja aconteceu
     if (mesHoje > nascimentoDataMes) {
         idade = anoHoje - nascimentoDataAno;
