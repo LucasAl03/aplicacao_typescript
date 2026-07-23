@@ -211,6 +211,7 @@ button[type="reset"],
 #btn-edit {
   background-color: var(--cor-primaria-clara);
   color: var(--cor-primaria-escura);
+  width: auto;
 }
 
 button[type="reset"]:hover,
@@ -221,6 +222,7 @@ button[type="reset"]:hover,
 #btn-excl {
   background-color: var(--cor-perigo-fundo);
   color: var(--cor-perigo);
+  width: auto;
 }
 
 #btn-excl:hover {
