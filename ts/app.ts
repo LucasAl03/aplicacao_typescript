@@ -21,6 +21,7 @@ interface Aluno {
 const alunos: Aluno[] = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
 
 // Traduz o value do input radio para sexo
+// Record = Constrói um tipo com um conjunto de propriedades Keys do tipo Type. Esse utilitário pode ser usado para mapear as propriedades de um tipo para outro tipo.
 const mapaSexo: Record<string, string> = { M: 'Masculino', F: 'Feminino' };
 
 // Traduz o value do select para ano do ensino fundamental
@@ -80,9 +81,11 @@ function formatarData(data: FormDataEntryValue | null): string {
 }
 
 // Pega o formulario do DOM
+//
 const formAluno = document.querySelector<HTMLFormElement>('#form-aluno');
 
 // Pega a section cards-lista do DOM
+// Elemento generico (qualquer elemento)
 const cardsLista = document.querySelector<HTMLElement>('#cards-lista');
 
 // Salava a array de alunos na localStorage
